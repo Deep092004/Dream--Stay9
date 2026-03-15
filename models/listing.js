@@ -10,21 +10,12 @@ const listingSchema = new Schema({
     },
     description: String,
     image: {
-        url: {
-            type: String,
-
-            default: "https://images.unsplash.com/photo-1754835143820-bcf20e2e1a35?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw4fHx8ZW58MHx8fHx8",
-            set: (v) => v
-                == ""
-                ? "https://images.unsplash.com/photo-1754835143820-bcf20e2e1a35?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw4fHx8ZW58MHx8fHx8"
-                : v,
-        }
-
+        url: String,
+        filename: String,   
     },
-    price:{
-        type: Number,
-       default: 0,
-    } ,
+    price: Number,
+       
+    
     location: String,
     country: String,
     reviews: [
@@ -35,6 +26,10 @@ const listingSchema = new Schema({
         },
         
     ],
+    owner:{
+        type:Schema.Types.ObjectId,
+        ref:"User",
+    }
 
 });
 
