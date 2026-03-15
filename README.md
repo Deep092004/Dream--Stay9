@@ -7,7 +7,7 @@ The platform enables users to upload images, view property locations on an inter
 
 ## 🚀 Live Demo
 
-https://dream-stay.onrender.com
+https://dream-stay9.onrender.com
 
 ---
 
