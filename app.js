@@ -24,7 +24,8 @@ const userRouter=require("./routes/user.js");
 
 
 
-const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
+// const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust"; change2
+const MONGO_URL = process.env.MONGO_URL;
 
 main()
   .then(() => {
@@ -90,10 +91,13 @@ app.use("/listings/:id/reviews",reviewsRouter);
 
 app.use("/listings",lisingsRouter);
 app.use("/listings/:id/reviews",reviewsRouter);
-
- app.get("/", (req, res) => {
-  res.send("Working the route");
+app.get("/", (req, res) => {
+  res.redirect("/listings");
 });
+
+//  app.get("/", (req, res) => {
+//   res.send("Working the route");  change3
+// });
 app.all(/.*/, (req, res, next) => {
   next(new ExpressError(404, "Page Not Found"));
 });
@@ -102,6 +106,11 @@ app.use((err, req, res, next) => {
   res.status(statusCode).render("error.ejs", { message });
   // res.status(statusCode).send(message);
 });
-app.listen(8080, () => {
-  console.log("server is running on port 8080");
+const port = process.env.PORT || 8080;
+
+app.listen(port, () => {
+  console.log("server is running on port " + port);
 });
+// app.listen(8080, () => {
+//   console.log("server is running on port 8080");   change1
+// });
