@@ -24,6 +24,22 @@ router.route("/")
   
 //new route
 router.get("/new", isloggedIn,listingController.renderNewForm);
+// search route
+router.get("/search", async (req, res) => {
+
+  let { q } = req.query;
+
+  const listings = await Listing.find({
+    $or: [
+      { title: { $regex: q, $options: "i" } },
+      { location: { $regex: q, $options: "i" } },
+      { country: { $regex: q, $options: "i" } }
+    ]
+  });
+
+  res.render("listings/index", { allListings: listings });
+
+});
 
 
 router.route("/:id")
@@ -50,19 +66,4 @@ router.get(
 );
 module.exports = router;
 
-// search bar route
-router.get("/search", async (req, res) => {
 
-  let { q } = req.query;
-
-  const listings = await Listing.find({
-    $or: [
-      { title: { $regex: q, $options: "i" } },
-      { location: { $regex: q, $options: "i" } },
-      { country: { $regex: q, $options: "i" } }
-    ]
-  });
-
-  res.render("listings/index", { allListings: listings });
-
-});
