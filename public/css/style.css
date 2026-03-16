@@ -210,3 +210,37 @@ transform:scale(1.04);
 .form input{
 border-radius:25px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* mobile responsive  */
+@media (max-width:768px){
+
+.filters{
+gap:1.2rem;
+}
+
+.filter i{
+font-size:1.2rem;
+}
+
+.card-img-top{
+height:220px;
+}
+
+}
